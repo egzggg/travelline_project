@@ -287,10 +287,26 @@
     ],
 
    
-    "contact": {
-        "section_title": "Связаться с нами",
-        "button_text": "Отправить"
+    "contact": [
+    {
+        "id_element": 1,
+        "position": 1,
+        "heading": "Связаться с нами",
+        "text": null,
+        "image": null,
+        "link": null,
+        "type": "text"
     },
+    {
+        "id_element": 2,
+        "position": 2,
+        "heading": null,
+        "text": "Отправить",
+        "image": null,
+        "link": null,
+        "type": "button"
+    }
+    ],
     
 
     "footer": [

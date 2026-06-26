@@ -207,3 +207,134 @@ Team
 ├── description
 └── photo
  ```
+
+# Общая структура таблиц:
+
+```text
+page
+ │
+ └──── section
+          │
+          └──── element
+                    │
+                    └──── element_type
+
+role
+ │
+ └──── user
+```
+
+ # Миграции:
+
+ ```text
+ migrations/
+│
+├── 001_create_users.py
+├── 002_create_content.py
+└── 003_seed_initial_data.py
+ ```
+
+### 001_create_users.py
+Создает только структуру.
+
+```text
+role
+----
+role_id
+name
+
+user
+----
+user_id
+role_id
+name
+login
+password_hash
+```
+
+### 002_create_content.py
+Создает только
+
+```text
+pages
+----
+page_id
+title
+
+
+sections
+-------
+section_id
+page_id
+name
+
+
+element_type
+------------
+type_id
+name
+
+
+elements
+-------
+element_id
+section_id
+type_id
+position
+heading
+text
+image
+link
+```
+
+### 003_seed_initial_data.py
+
+Наполняем роли и юзеров
+
+### 004_seed_site_content.py
+
+Создаем записи в таблице sections
+
+Header
+Hero
+Statistics
+Team
+Timeline
+Directions
+Vacancies
+Offices
+Benefits
+Contact
+Footer
+
+Затем наполняет таблицу elements.
+
+| section_id | position | heading | text            | type   | link       |
+| ---------- | -------- | ------- | --------------- | ------ | ---------- |
+| 1          | 1        | NULL    | TravelLine Tech | text   | NULL       |
+| 1          | 2        | NULL    | Команда         | button | #team      |
+| 1          | 3        | NULL    | Вакансии        | button | #vacancies |
+| 1          | 4        | NULL    | Контакты        | button | #contact   |
+
+И тд....
+
+# Итоговый seed базы данных.
+
+Получится цепочка миграций:
+
+001_create_users_roles.py
+    ↓
+Создает таблицы roles и users
+
+002_create_sections_elements.py
+    ↓
+Создает таблицы sections и elements
+
+003_seed_users_roles.py
+    ↓
+Заполняет роли и тестовых пользователей
+
+004_seed_site_content.py
+    ↓
+Создает все секции сайта
+    и заполняет их начальными элементами

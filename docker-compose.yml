@@ -1,0 +1,37 @@
+services:
+
+  postgres:
+    image: postgres:18
+
+    container_name: travelline_postgres
+
+    restart: always
+
+    environment:
+      POSTGRES_DB: travelline
+      POSTGRES_USER: travelline_user
+      POSTGRES_PASSWORD: travelline_pass
+
+    ports:
+      - "5435:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+
+  migrate:
+    build: .
+
+    container_name: travelline_migrate
+
+    depends_on:
+      - postgres
+
+    command: python -m backend.migrate
+
+    environment:
+      DATABASE_URL: postgresql://travelline_user:travelline_pass@postgres:5432/travelline
+
+
+volumes:
+  postgres_data:
