@@ -7,9 +7,12 @@ def upgrade():
 
     with engine.begin() as connection:
 
+        # -----------------------------
+        # Таблица секций
+        # -----------------------------
 
         connection.execute(text("""
-        CREATE TABLE sections
+        CREATE TABLE IF NOT EXISTS sections
         (
             section_id SERIAL PRIMARY KEY,
 
@@ -20,9 +23,12 @@ def upgrade():
         """))
 
 
+        # -----------------------------
+        # Типы элементов
+        # -----------------------------
 
         connection.execute(text("""
-        CREATE TABLE element_types
+        CREATE TABLE IF NOT EXISTS element_types
         (
             type_id SERIAL PRIMARY KEY,
 
@@ -33,9 +39,12 @@ def upgrade():
         """))
 
 
+        # -----------------------------
+        # Элементы секций
+        # -----------------------------
 
         connection.execute(text("""
-        CREATE TABLE elements
+        CREATE TABLE IF NOT EXISTS elements
         (
             element_id SERIAL PRIMARY KEY,
 
@@ -74,14 +83,18 @@ def upgrade():
         """))
 
 
+        # -----------------------------
+        # Начальные типы элементов
+        # -----------------------------
 
         connection.execute(text("""
         INSERT INTO element_types(name)
         VALUES
-        ('text'),
-        ('button'),
-        ('image'),
-        ('link');
+            ('text'),
+            ('button'),
+            ('image'),
+            ('link')
+        ON CONFLICT (name) DO NOTHING;
         """))
 
 
@@ -94,13 +107,16 @@ def downgrade():
         DROP TABLE IF EXISTS elements CASCADE;
         """))
 
+
         connection.execute(text("""
         DROP TABLE IF EXISTS element_types CASCADE;
         """))
 
+
         connection.execute(text("""
         DROP TABLE IF EXISTS sections CASCADE;
         """))
+
 
 
 if __name__ == "__main__":

@@ -24,7 +24,6 @@ def run_migrations():
 
         print("OK")
 
-
     print("\nAll migrations completed successfully.")
 
 

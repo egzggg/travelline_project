@@ -19,29 +19,6 @@ def upgrade():
 
     with engine.begin() as connection:
 
-        section_ids = {}
-
-
-        # -----------------------------
-        # Создаем секции
-        # -----------------------------
-
-        for section_name in data.keys():
-
-            result = connection.execute(
-                text("""
-                    INSERT INTO sections(name)
-                    VALUES (:name)
-                    RETURNING section_id;
-                """),
-                {
-                    "name": section_name
-                }
-            )
-
-            section_ids[section_name] = result.scalar()
-
-
 
         # -----------------------------
         # Получаем типы элементов
@@ -63,21 +40,53 @@ def upgrade():
 
 
         # -----------------------------
+        # Создаем секции
+        # -----------------------------
+
+        section_ids = {}
+
+
+        for section_name in data.keys():
+
+            result = connection.execute(
+                text("""
+                    INSERT INTO sections(name)
+                    VALUES (:name)
+                    RETURNING section_id;
+                """),
+                {
+                    "name": section_name
+                }
+            )
+
+
+            section_ids[section_name] = result.scalar()
+
+
+
+        # -----------------------------
         # Создаем элементы
         # -----------------------------
 
-        for section_name, content in data.items():
+        for section_name, elements in data.items():
+
 
             section_id = section_ids[section_name]
 
 
-            for element in content:
+            for element in elements:
 
 
                 element_type = element.get("type")
 
 
                 type_id = types.get(element_type)
+
+
+                if type_id is None:
+                    raise Exception(
+                        f"Unknown element type: {element_type}"
+                    )
 
 
                 connection.execute(
