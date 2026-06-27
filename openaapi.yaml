@@ -1,12 +1,406 @@
-openapi: '3.0.3'
+openapi: "3.0.3"
+
 info:
-  title: API Title
-  version: '1.0'
+  title: TravelLine API
+  version: "1.0.0"
+
 servers:
   - url: http://127.0.0.1:8000/
+
 paths:
+
   /api/content:
     get:
+      summary: Получение содержимого всей страницы
+      tags:
+        - Content
+      operationId: getAllContent
+
       responses:
-        '200':
+        "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sections"
+
+        "404":
+          description: Content not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/sections/{section_name}:
+    get:
+      summary: Получение содержимого секции
+      tags:
+        - Sections
+      operationId: getSection
+
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Название секции
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Section"
+
+        "404":
+          description: Section not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /api/sections/{section_name}/elements:
+    post:
+      summary: Создание нового элемента
+      tags:
+        - Elements
+      operationId: createElement
+
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Название секции
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateElement"
+
+      responses:
+        "201":
+          description: Element created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Element"
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "404":
+          description: Section not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/sections/{section_name}/elements/{element_id}:
+    get:
+      summary: Получение элемента
+      tags:
+        - Elements
+      operationId: getElement
+
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Название секции
+          schema:
+            type: string
+
+        - name: element_id
+          in: path
+          required: true
+          description: Идентификатор элемента
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Element"
+
+        "404":
+          description: Element not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      summary: Удаление элемента
+      tags:
+        - Elements
+      operationId: deleteElement
+
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Название секции
+          schema:
+            type: string
+
+        - name: element_id
+          in: path
+          required: true
+          description: Идентификатор элемента
+          schema:
+            type: integer
+
+      responses:
+        "204":
+          description: Element deleted
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "404":
+          description: Element not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    patch:
+      summary: Редактирование элемента
+      tags:
+        - Elements
+      operationId: updateElement
+
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Название секции
+          schema:
+            type: string
+
+        - name: element_id
+          in: path
+          required: true
+          description: Идентификатор элемента
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateElement"
+
+      responses:
+        "200":
+          description: Element updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Element"
+
+        "400":
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "404":
+          description: Element not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+components:
+
+  schemas:
+
+    Sections:
+      type: array
+      items:
+        $ref: "#/components/schemas/Section"
+
+    Section:
+      type: object
+
+      required:
+        - name
+        - elements
+
+      properties:
+        name:
+          type: string
+          example: hero
+
+        elements:
+          type: array
+          items:
+            $ref: "#/components/schemas/Element"
+
+
+    CreateElement:
+      type: object
+
+      required:
+        - type
+        - position
+
+      properties:
+        type:
+          type: string
+          example: text
+
+        position:
+          type: integer
+          example: 1
+
+        heading:
+          type: string
+          nullable: true
+
+        text:
+          type: string
+          nullable: true
+
+        image:
+          type: string
+          nullable: true
+
+        link:
+          type: string
+          format: uri
+          nullable: true
+
+    Element:
+      type: object
+
+      required:
+        - id
+        - type
+        - position
+
+      properties:
+        id:
+          type: integer
+          example: 15
+
+        type:
+          type: string
+          example: text
+
+        position:
+          type: integer
+          example: 1
+
+        heading:
+          type: string
+          nullable: true
+
+        text:
+          type: string
+          nullable: true
+
+        image:
+          type: string
+          nullable: true
+
+        link:
+          type: string
+          format: uri
+          nullable: true
+          
+    UpdateElement:
+      type: object
+
+      properties:
+
+        type:
+          type: string
+
+        position:
+          type: integer
+
+        heading:
+          type: string
+          nullable: true
+
+        text:
+          type: string
+          nullable: true
+
+        image:
+          type: string
+          nullable: true
+
+        link:
+          type: string
+          format: uri
+          nullable: true      
+
+
+    Error:
+      type: object
+
+      required:
+        - code
+        - message
+
+      properties:
+        code:
+          type: integer
+          example: 404
+
+        message:
+          type: string
+          example: Resource not found
+
