@@ -14,6 +14,20 @@ app = FastAPI()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+ADMIN_SECTIONS = [
+    ("Header", "header"),
+    ("Hero", "hero"),
+    ("Statistics", "statistics"),
+    ("Team", "team"),
+    ("Timeline", "timeline"),
+    ("Directions", "directions"),
+    ("Vacancies", "vacancies"),
+    ("Offices", "offices"),
+    ("Benefits", "benefits"),
+    ("Contact Form", "contact"),
+    ("Footer", "footer")
+]
+
 
 templates = Jinja2Templates(
     directory=str(BASE_DIR / "frontend/templates")
@@ -159,3 +173,69 @@ async def get_content():
 
 
     return data
+
+@app.get("/admin", response_class=HTMLResponse)
+async def admin(request: Request):
+
+    return templates.TemplateResponse(
+        request=request,
+        name="admin/index.html",
+        context={
+            "sections": ADMIN_SECTIONS
+        }
+    )
+
+@app.get("/admin/{section_name}", response_class=HTMLResponse)
+async def admin_section(request: Request, section_name: str):
+
+    with engine.connect() as connection:
+
+        elements = connection.execute(
+            text(
+                """
+                SELECT
+                    e.element_id,
+                    et.name AS type,
+                    e.position,
+                    e.heading,
+                    e.text,
+                    e.image,
+                    e.link
+                FROM elements e
+                JOIN element_types et
+                    ON e.type_id = et.type_id
+                JOIN sections s
+                    ON e.section_id = s.section_id
+                WHERE s.name = :section_name
+                ORDER BY e.position;
+                """
+            ),
+            {
+                "section_name": section_name
+            }
+        )
+
+        data = []
+
+        for element in elements:
+
+            data.append(
+                {
+                    "id": element.element_id,
+                    "type": element.type,
+                    "position": element.position,
+                    "heading": element.heading,
+                    "text": element.text,
+                    "image": element.image,
+                    "link": element.link
+                }
+            )
+
+    return templates.TemplateResponse(
+        request=request,
+        name="admin/section.html",
+        context={
+            "section_name": section_name,
+            "elements": data
+        }
+    )
