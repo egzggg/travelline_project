@@ -1,0 +1,230 @@
+{
+  "hero": [
+    {
+      "position": 1,
+      "type": "title",
+      "heading": "Стабильно растем",
+      "text": "и принимаем новые вызовы TravelTech индустрии"
+    },
+    {
+      "position": 2,
+      "type": "stat",
+      "heading": "500+",
+      "text": "Сотрудников"
+    },
+    {
+      "position": 3,
+      "type": "stat",
+      "heading": "12000+",
+      "text": "Клиентов"
+    },
+    {
+      "position": 4,
+      "type": "stat",
+      "heading": "20+",
+      "text": "Лет опыта"
+    },
+    {
+      "position": 5,
+      "type": "stat",
+      "heading": "10",
+      "text": "Продуктов"
+    }
+  ],
+
+  "team": [
+    {
+      "position": 1,
+      "type": "employee",
+      "heading": "Иван Иванов",
+      "text": "Backend Developer",
+      "image": "TODO_IMAGE",
+      "link": "https://t.me/example"
+    },
+    {
+      "position": 2,
+      "type": "employee",
+      "heading": "Анна Петрова",
+      "text": "Frontend Developer",
+      "image": "TODO_IMAGE",
+      "link": "https://t.me/example"
+    },
+    {
+      "position": 3,
+      "type": "employee",
+      "heading": "Алексей Смирнов",
+      "text": "QA Engineer",
+      "image": "TODO_IMAGE",
+      "link": "https://t.me/example"
+    }
+  ],
+
+  "timeline": [
+    {
+      "position": 1,
+      "type": "timeline",
+      "heading": "2008",
+      "text": "Основание компании"
+    },
+    {
+      "position": 2,
+      "type": "timeline",
+      "heading": "2015",
+      "text": "Запуск новых продуктов"
+    },
+    {
+      "position": 3,
+      "type": "timeline",
+      "heading": "2024",
+      "text": "Масштабирование команды"
+    }
+  ],
+
+  "clients": [
+    {
+      "position": 1,
+      "type": "client",
+      "heading": "Client 1",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 2,
+      "type": "client",
+      "heading": "Client 2",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 3,
+      "type": "client",
+      "heading": "Client 3",
+      "image": "TODO_IMAGE"
+    }
+  ],
+
+  "directions": [
+    {
+      "position": 1,
+      "type": "direction",
+      "heading": "Backend",
+      "text": "Микросервисная архитектура",
+      "link": "Python, FastAPI, PostgreSQL"
+    },
+    {
+      "position": 2,
+      "type": "direction",
+      "heading": "Frontend",
+      "text": "Веб-интерфейсы",
+      "link": "React, TypeScript"
+    },
+    {
+      "position": 3,
+      "type": "direction",
+      "heading": "DevOps",
+      "text": "Инфраструктура",
+      "link": "Docker, Kubernetes"
+    }
+  ],
+
+  "vacancies": [
+    {
+      "position": 1,
+      "type": "vacancy",
+      "heading": "Python Developer",
+      "text": "Удаленно",
+      "link": "https://hh.ru"
+    },
+    {
+      "position": 2,
+      "type": "vacancy",
+      "heading": "QA Engineer",
+      "text": "Офис",
+      "link": "https://hh.ru"
+    },
+    {
+      "position": 3,
+      "type": "vacancy",
+      "heading": "DevOps Engineer",
+      "text": "Удаленно",
+      "link": "https://hh.ru"
+    }
+  ],
+
+  "gallery": [
+    {
+      "position": 1,
+      "type": "photo",
+      "heading": "Корпоратив",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 2,
+      "type": "photo",
+      "heading": "Конференция",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 3,
+      "type": "photo",
+      "heading": "Офис",
+      "image": "TODO_IMAGE"
+    }
+  ],
+
+  "offices": [
+    {
+      "position": 1,
+      "type": "office",
+      "heading": "Йошкар-Ола",
+      "text": "Главный офис компании",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 2,
+      "type": "office",
+      "heading": "Удаленная работа",
+      "text": "Работаем из любой точки мира",
+      "image": "TODO_IMAGE"
+    }
+  ],
+
+  "benefits": [
+    {
+      "position": 1,
+      "type": "benefit",
+      "heading": "ДМС",
+      "text": "Полное медицинское страхование"
+    },
+    {
+      "position": 2,
+      "type": "benefit",
+      "heading": "Курсы",
+      "text": "Оплачиваем обучение"
+    },
+    {
+      "position": 3,
+      "type": "benefit",
+      "heading": "Спорт",
+      "text": "Компенсация фитнеса"
+    },
+    {
+      "position": 4,
+      "type": "benefit",
+      "heading": "Гибкий график",
+      "text": "Работай когда удобно"
+    }
+  ],
+
+  "contact": [
+    {
+      "position": 1,
+      "type": "title",
+      "heading": "Напишите нам",
+      "text": "Мы обязательно ответим"
+    },
+    {
+      "position": 2,
+      "type": "button",
+      "text": "Отправить"
+    }
+  ]
+}
