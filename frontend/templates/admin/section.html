@@ -14,9 +14,12 @@ rel="stylesheet">
 
 </head>
 
+
 <body class="bg-light">
 
+
 <div class="container py-5">
+
 
 <a
 href="/admin"
@@ -26,6 +29,8 @@ class="btn btn-outline-secondary mb-4">
 
 </a>
 
+
+
 <h1 class="mb-4">
 
 {{ section_name|capitalize }}
@@ -33,13 +38,35 @@ class="btn btn-outline-secondary mb-4">
 </h1>
 
 
+
+
+
+{% if elements|length == 0 %}
+
+<div class="alert alert-info">
+
+В этом разделе пока нет элементов
+
+</div>
+
+{% endif %}
+
+
+
+
+
 {% for element in elements %}
+
 
 <div class="card mb-3 shadow-sm">
 
+
 <div class="card-body">
 
+
+
 <div class="d-flex justify-content-between align-items-center mb-3">
+
 
 <span class="badge bg-primary">
 
@@ -47,13 +74,18 @@ class="btn btn-outline-secondary mb-4">
 
 </span>
 
+
 <span class="text-muted">
 
 Позиция {{ element.position }}
 
 </span>
 
+
 </div>
+
+
+
 
 
 {% if element.heading %}
@@ -67,6 +99,10 @@ class="btn btn-outline-secondary mb-4">
 {% endif %}
 
 
+
+
+
+
 {% if element.text %}
 
 <p class="mb-3">
@@ -78,14 +114,22 @@ class="btn btn-outline-secondary mb-4">
 {% endif %}
 
 
+
+
+
+
 {% if element.image %}
 
 <img
-src="data:image/png;base64,{{ element.image }}"
+src="{{ element.image }}"
 class="img-fluid rounded mb-3"
 style="max-width:300px;">
 
 {% endif %}
+
+
+
+
 
 
 {% if element.link %}
@@ -105,38 +149,82 @@ target="_blank">
 {% endif %}
 
 
-<div class="text-end">
+
+
+
+<div class="d-flex justify-content-end gap-2">
+
+
 
 <a
-href="/admin/{{ section_name }}/{{ element.id }}"
+href="/admin/{{ section_name }}/{{ element.id }}/edit"
 class="btn btn-primary">
 
 Редактировать
 
 </a>
 
+
+
+
+<form
+method="post"
+action="/admin/{{ section_name }}/{{ element.id }}/delete">
+
+
+<button
+
+type="submit"
+
+class="btn btn-danger">
+
+Удалить
+
+</button>
+
+
+</form>
+
+
+
 </div>
+
+
+
 
 </div>
 
 </div>
+
+
 
 {% endfor %}
 
 
+
+
+
 <div class="text-center mt-5">
 
+
 <a
-href="#"
-class="btn btn-success btn-lg">
+
+class="btn btn-success"
+
+href="/admin/{{ section_name }}/create">
 
 + Добавить элемент
 
 </a>
 
-</div>
 
 </div>
+
+
+
+</div>
+
+
 
 </body>
 
