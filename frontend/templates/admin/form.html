@@ -22,11 +22,17 @@ body {
 
 
 .preview {
+
     min-height:350px;
+
     border:1px dashed #aaa;
+
     border-radius:10px;
+
     padding:20px;
+
     background:white;
+
 }
 
 
@@ -60,6 +66,7 @@ body {
 }
 
 
+
 .preview img {
 
     max-width:100%;
@@ -68,12 +75,6 @@ body {
 
 }
 
-
-.card-preview {
-
-    width:100%;
-
-}
 
 
 .stat-number {
@@ -87,6 +88,7 @@ body {
 
 </style>
 
+
 </head>
 
 
@@ -96,11 +98,14 @@ body {
 <div class="container py-5">
 
 
+
 <div class="d-flex justify-content-between align-items-center mb-4">
 
 
 <h1>
+
 {{ title }}
+
 </h1>
 
 
@@ -117,10 +122,18 @@ class="btn btn-outline-secondary">
 
 
 
+
+
+
 <div class="row">
 
 
+
+<!-- FORM -->
+
+
 <div class="col-md-7">
+
 
 
 <div class="card shadow-sm">
@@ -130,27 +143,33 @@ class="btn btn-outline-secondary">
 
 
 
+
 <form
 method="post"
-action="{% if mode == 'edit' %}/admin/{{ section_name }}/edit/{{ element.element_id }}{% else %}/admin/{{ section_name }}/create{% endif %}"
+action="{% if mode == 'edit' %}/admin/{{ section_name }}/{{ element.element_id }}/edit{% else %}/admin/{{ section_name }}/create{% endif %}"
 enctype="multipart/form-data">
+
+
 
 
 
 <!-- TYPE -->
 
+
 <div class="mb-3">
 
 
 <label class="form-label">
+
 Тип элемента
+
 </label>
+
 
 
 <select
 
 name="element_type"
-id="type"
 
 class="form-select">
 
@@ -163,7 +182,9 @@ class="form-select">
 value="{{ type }}"
 
 {% if element and element.type == type %}
+
 selected
+
 {% endif %}
 
 >
@@ -176,10 +197,15 @@ selected
 {% endfor %}
 
 
+
 </select>
 
 
 </div>
+
+
+
+
 
 
 
@@ -190,7 +216,9 @@ selected
 
 
 <label class="form-label">
+
 Позиция
+
 </label>
 
 
@@ -224,11 +252,22 @@ selected
 {% endfor %}
 
 
+
 </select>
 
 
 </div>
-<!-- HEADING -->
+
+
+
+
+
+
+
+
+
+<!-- DYNAMIC FIELDS -->
+
 
 
 {% if "heading" in fields %}
@@ -239,25 +278,24 @@ selected
 
 <label class="form-label">
 
-Heading
+Заголовок
 
 </label>
 
 
 <input
 
+type="text"
+
 name="heading"
 
 id="heading"
-
-type="text"
 
 class="form-control"
 
 value="{{ element.heading if element else '' }}"
 
 oninput="updatePreview()"
-
 
 >
 
@@ -270,7 +308,49 @@ oninput="updatePreview()"
 
 
 
-<!-- TEXT -->
+
+
+
+{% if "subtitle" in fields %}
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Подзаголовок
+
+</label>
+
+
+<input
+
+type="text"
+
+name="subtitle"
+
+id="subtitle"
+
+class="form-control"
+
+value="{{ element.subtitle if element else '' }}"
+
+oninput="updatePreview()"
+
+>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
 
 
 {% if "text" in fields %}
@@ -281,14 +361,14 @@ oninput="updatePreview()"
 
 <label class="form-label">
 
-Text
+Текст
 
 </label>
 
 
 <textarea
 
-name="text_value"
+name="text"
 
 id="text"
 
@@ -309,7 +389,49 @@ oninput="updatePreview()"
 
 
 
-<!-- IMAGE -->
+
+
+
+{% if "label" in fields %}
+
+
+<div class="mb-3">
+
+
+<label class="form-label">
+
+Метка
+
+</label>
+
+
+<input
+
+type="text"
+
+name="label"
+
+id="label"
+
+class="form-control"
+
+value="{{ element.label if element else '' }}"
+
+oninput="updatePreview()"
+
+>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
 
 
 {% if "image" in fields %}
@@ -325,22 +447,25 @@ oninput="updatePreview()"
 </label>
 
 
+
 <input
+
+type="file"
 
 name="image"
 
 id="image"
 
-type="file"
-
 class="form-control"
 
-accept="image/png,image/jpeg,image/webp"
+accept="image/*"
 
 onchange="previewImage(event)"
 
-
 >
+
+
+
 
 
 {% if element and element.image %}
@@ -353,6 +478,8 @@ onchange="previewImage(event)"
 
 src="{{ element.image }}"
 
+id="preview-image"
+
 class="img-fluid rounded"
 
 style="max-width:300px;">
@@ -364,17 +491,11 @@ style="max-width:300px;">
 {% endif %}
 
 
+
 </div>
 
 
 {% endif %}
-
-
-
-
-<!-- LINK -->
-
-
 {% if "link" in fields %}
 
 
@@ -390,18 +511,17 @@ style="max-width:300px;">
 
 <input
 
+type="text"
+
 name="link"
 
 id="link"
-
-type="text"
 
 class="form-control"
 
 value="{{ element.link if element else '' }}"
 
 oninput="updatePreview()"
-
 
 >
 
@@ -410,6 +530,8 @@ oninput="updatePreview()"
 
 
 {% endif %}
+
+
 
 
 
@@ -435,6 +557,9 @@ class="btn btn-success px-5">
 
 
 
+
+
+
 </form>
 
 
@@ -448,10 +573,16 @@ class="btn btn-success px-5">
 
 
 
+
+
+
+
 <!-- PREVIEW -->
 
 
+
 <div class="col-md-5">
+
 
 
 <h5 class="mb-3">
@@ -461,20 +592,55 @@ class="btn btn-success px-5">
 </h5>
 
 
+
+
 <div class="preview">
-    {% if preview == "hero" %}
+
+
+
+
+
+{% if preview == "hero" %}
+
+
 
 <section class="hero-preview">
 
-<h1 id="preview-text">
 
-{{ element.text if element else "Стабильно растем" }}
+<div>
+
+
+<h1 id="preview-heading">
+
+
+{{ element.heading if element else "Стабильно растем" }}
+
 
 </h1>
 
+
+
+<p id="preview-text">
+
+
+{{ element.text if element else "Описание" }}
+
+
+</p>
+
+
+</div>
+
+
 </section>
 
+
+
+
 {% endif %}
+
+
+
 
 
 
@@ -482,20 +648,25 @@ class="btn btn-success px-5">
 {% if preview == "card" %}
 
 
-<div class="card card-preview">
+
+<div class="card">
+
 
 
 {% if element and element.image %}
 
-<img
 
-id="preview-image"
+<img
 
 src="{{ element.image }}"
 
+id="preview-image"
+
 class="card-img-top">
 
+
 {% else %}
+
 
 <img
 
@@ -505,35 +676,81 @@ style="display:none"
 
 class="card-img-top">
 
+
 {% endif %}
+
+
+
+
 
 
 
 <div class="card-body">
 
 
+
 <h5 id="preview-heading">
 
+
 {{ element.heading if element else "Название" }}
+
 
 </h5>
 
 
 
+
+
 <p id="preview-text">
 
+
 {{ element.text if element else "Описание" }}
+
 
 </p>
 
 
-</div>
 
 
-</div>
+
+{% if element and element.link %}
+
+
+<a
+
+id="preview-link"
+
+href="{{ element.link }}"
+
+target="_blank">
+
+
+{{ element.link }}
+
+
+</a>
 
 
 {% endif %}
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{% endif %}
+
+
+
+
 
 
 
@@ -542,33 +759,39 @@ class="card-img-top">
 {% if preview == "stat" %}
 
 
+
 <div class="text-center">
 
 
 <div
 
-id="preview-heading"
+class="stat-number"
 
-class="stat-number">
+id="preview-heading">
 
 
-{{ element.heading if element else "100+" }}
+{{ element.heading if element else "500+" }}
 
 
 </div>
 
 
 
-<p id="preview-text">
+<p
+
+id="preview-text">
 
 
-{{ element.text if element else "Описание статистики" }}
+{{ element.text if element else "Сотрудников" }}
 
 
 </p>
 
 
+
 </div>
+
+
 
 
 {% endif %}
@@ -577,13 +800,18 @@ class="stat-number">
 
 
 
+
+
+
+
 {% if preview == "text" %}
+
 
 
 <h3 id="preview-heading">
 
 
-{{ element.heading if element else "Heading" }}
+{{ element.heading if element else "Заголовок" }}
 
 
 </h3>
@@ -593,26 +821,40 @@ class="stat-number">
 <p id="preview-text">
 
 
-{{ element.text if element else "Text" }}
+{{ element.text if element else "Текст" }}
 
 
 </p>
+
+
+
 
 
 {% endif %}
 
 
 
-</div>
+
+
 
 
 </div>
 
 
+
 </div>
 
 
+
 </div>
+
+
+
+</div>
+
+
+
+
 
 
 
@@ -621,15 +863,25 @@ class="stat-number">
 <script>
 
 
+
 function updatePreview(){
+
 
 
 let heading =
 document.getElementById("heading");
 
 
+
 let text =
 document.getElementById("text");
+
+
+
+let link =
+document.getElementById("link");
+
+
 
 
 
@@ -648,7 +900,11 @@ document.querySelectorAll(
 
 
 
+
+
+
 if(heading){
+
 
 
 previewHeading.forEach(
@@ -656,7 +912,7 @@ previewHeading.forEach(
 item => {
 
 item.innerText =
-heading.value || "Heading";
+heading.value || "Заголовок";
 
 }
 
@@ -664,18 +920,25 @@ heading.value || "Heading";
 
 
 }
+
+
+
+
 
 
 
 if(text){
 
 
+
 previewText.forEach(
 
 item => {
 
+
 item.innerText =
-text.value || "Text";
+text.value || "Текст";
+
 
 }
 
@@ -686,7 +949,37 @@ text.value || "Text";
 
 
 
+
+
+
+let previewLink =
+document.getElementById(
+"preview-link"
+);
+
+
+
+
+if(link && previewLink){
+
+
+previewLink.href =
+link.value;
+
+
+previewLink.innerText =
+link.value;
+
+
 }
+
+
+
+}
+
+
+
+
 
 
 
@@ -695,8 +988,11 @@ text.value || "Text";
 function previewImage(event){
 
 
+
 let image =
-document.getElementById("preview-image");
+document.getElementById(
+"preview-image"
+);
 
 
 
@@ -705,14 +1001,20 @@ event.target.files[0];
 
 
 
+
+
+
 if(file && image){
+
 
 
 image.src =
 URL.createObjectURL(file);
 
 
-image.style.display="block";
+
+image.style.display =
+"block";
 
 
 }
@@ -720,12 +1022,16 @@ image.style.display="block";
 
 
 }
+
+
 
 
 
 </script>
 
 
+
 </body>
+
 
 </html>

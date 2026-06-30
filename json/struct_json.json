@@ -1,333 +1,224 @@
 {
-    "header": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": null,
-            "text": "TravelLine Tech",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": null,
-            "text": "Команда",
-            "image": null,
-            "link": "#team",
-            "type": "button"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": null,
-            "text": "Вакансии",
-            "image": null,
-            "link": "#vacancies",
-            "type": "button"
-        },
-        {
-            "id_element": 4,
-            "position": 4,
-            "heading": null,
-            "text": "Контакты",
-            "image": null,
-            "link": "#contact",
-            "type": "button"
-        }
-    ],
-
-    "hero": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": null,
-            "text": "Стабильно растем",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": null,
-            "text": "и принимаем новые вызовы",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": null,
-            "text": "TravelTech индустрии",
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-    "statistics": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "500+",
-            "text": "Сотрудников",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "12000+",
-            "text": "Клиентов",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": "20+",
-            "text": "Лет опыта",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 4,
-            "position": 4,
-            "heading": "10",
-            "text": "Продуктов",
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-    "team": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "Иван Иванов",
-            "text": "Backend Developer",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "Анна Петрова",
-            "text": "Frontend Developer",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": "Алексей Смирнов",
-            "text": "QA Engineer",
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-    "timeline": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "2008",
-            "text": "Основание компании.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "2015",
-            "text": "Запуск новых продуктов.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": "2024",
-            "text": "Масштабирование команды.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-    "directions": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "Backend",
-            "text": "Микросервисы и API.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "Frontend",
-            "text": "Веб-приложения и интерфейсы.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": "DevOps",
-            "text": "Инфраструктура и CI/CD.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-    "vacancies": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "Python Developer",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "QA Engineer",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": "DevOps Engineer",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-    "offices": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "Йошкар-Ола",
-            "text": "Главный офис компании.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "Удалённая работа",
-            "text": "Работаем из любой точки мира.",
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-    "benefits": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "ДМС",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "Курсы",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 3,
-            "position": 3,
-            "heading": "Спорт",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 4,
-            "position": 4,
-            "heading": "Гибкий график",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ],
-
-   
-    "contact": [
+  "hero": [
     {
-        "id_element": 1,
-        "position": 1,
-        "heading": "Связаться с нами",
-        "text": null,
-        "image": null,
-        "link": null,
-        "type": "text"
+      "position": 1,
+      "type": "stat",
+      "heading": "500+",
+      "text": "Сотрудников"
     },
     {
-        "id_element": 2,
-        "position": 2,
-        "heading": null,
-        "text": "Отправить",
-        "image": null,
-        "link": null,
-        "type": "button"
+      "position": 2,
+      "type": "stat",
+      "heading": "12000+",
+      "text": "Клиентов"
+    },
+    {
+      "position": 3,
+      "type": "stat",
+      "heading": "20+",
+      "text": "Лет опыта"
+    },
+    {
+      "position": 4,
+      "type": "stat",
+      "heading": "10",
+      "text": "Продуктов"
     }
-    ],
-    
+  ],
 
-    "footer": [
-        {
-            "id_element": 1,
-            "position": 1,
-            "heading": "TravelLine Tech",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        },
-        {
-            "id_element": 2,
-            "position": 2,
-            "heading": "© 2026 Все права защищены",
-            "text": null,
-            "image": null,
-            "link": null,
-            "type": "text"
-        }
-    ]
+  "team": [
+    {
+      "position": 1,
+      "type": "employee",
+      "heading": "Иван Иванов",
+      "text": "Backend Developer",
+      "image": "TODO_IMAGE",
+      "link": "https://t.me/example"
+    },
+    {
+      "position": 2,
+      "type": "employee",
+      "heading": "Анна Петрова",
+      "text": "Frontend Developer",
+      "image": "TODO_IMAGE",
+      "link": "https://t.me/example"
+    },
+    {
+      "position": 3,
+      "type": "employee",
+      "heading": "Алексей Смирнов",
+      "text": "QA Engineer",
+      "image": "TODO_IMAGE",
+      "link": "https://t.me/example"
+    }
+  ],
 
+  "timeline": [
+    {
+      "position": 1,
+      "type": "timeline",
+      "heading": "2008",
+      "text": "Основание компании"
+    },
+    {
+      "position": 2,
+      "type": "timeline",
+      "heading": "2015",
+      "text": "Запуск новых продуктов"
+    },
+    {
+      "position": 3,
+      "type": "timeline",
+      "heading": "2024",
+      "text": "Масштабирование команды"
+    }
+  ],
+
+  "clients": [
+    {
+      "position": 1,
+      "type": "client",
+      "heading": "Client 1",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 2,
+      "type": "client",
+      "heading": "Client 2",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 3,
+      "type": "client",
+      "heading": "Client 3",
+      "image": "TODO_IMAGE"
+    }
+  ],
+
+  "directions": [
+    {
+      "position": 1,
+      "type": "direction",
+      "heading": "Backend",
+      "text": "Микросервисная архитектура",
+      "link": "Python, FastAPI, PostgreSQL"
+    },
+    {
+      "position": 2,
+      "type": "direction",
+      "heading": "Frontend",
+      "text": "Веб-интерфейсы",
+      "link": "React, TypeScript"
+    },
+    {
+      "position": 3,
+      "type": "direction",
+      "heading": "DevOps",
+      "text": "Инфраструктура",
+      "link": "Docker, Kubernetes"
+    }
+  ],
+
+  "vacancies": [
+    {
+      "position": 1,
+      "type": "vacancy",
+      "heading": "Python Developer",
+      "text": "Удаленно",
+      "link": "https://hh.ru"
+    },
+    {
+      "position": 2,
+      "type": "vacancy",
+      "heading": "QA Engineer",
+      "text": "Офис",
+      "link": "https://hh.ru"
+    },
+    {
+      "position": 3,
+      "type": "vacancy",
+      "heading": "DevOps Engineer",
+      "text": "Удаленно",
+      "link": "https://hh.ru"
+    }
+  ],
+
+  "gallery": [
+    {
+      "position": 1,
+      "type": "photo",
+      "heading": "Корпоратив",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 2,
+      "type": "photo",
+      "heading": "Конференция",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 3,
+      "type": "photo",
+      "heading": "Офис",
+      "image": "TODO_IMAGE"
+    }
+  ],
+
+  "offices": [
+    {
+      "position": 1,
+      "type": "office",
+      "heading": "Йошкар-Ола",
+      "text": "Главный офис компании",
+      "image": "TODO_IMAGE"
+    },
+    {
+      "position": 2,
+      "type": "office",
+      "heading": "Удаленная работа",
+      "text": "Работаем из любой точки мира",
+      "image": "TODO_IMAGE"
+    }
+  ],
+
+  "benefits": [
+    {
+      "position": 1,
+      "type": "benefit",
+      "heading": "ДМС",
+      "text": "Полное медицинское страхование"
+    },
+    {
+      "position": 2,
+      "type": "benefit",
+      "heading": "Курсы",
+      "text": "Оплачиваем обучение"
+    },
+    {
+      "position": 3,
+      "type": "benefit",
+      "heading": "Спорт",
+      "text": "Компенсация фитнеса"
+    },
+    {
+      "position": 4,
+      "type": "benefit",
+      "heading": "Гибкий график",
+      "text": "Работай когда удобно"
+    }
+  ],
+
+  "contact": [
+    {
+      "position": 1,
+      "type": "title",
+      "heading": "Напишите нам",
+      "text": "Мы обязательно ответим"
+    },
+    {
+      "position": 2,
+      "type": "button",
+      "text": "Отправить"
+    }
+  ]
 }

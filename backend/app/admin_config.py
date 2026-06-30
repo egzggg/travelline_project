@@ -1,144 +1,128 @@
 ADMIN_CONFIG = {
 
     "hero": {
-
         "preview": "hero",
-
-        "fields": [
-            "text"
-        ],
-
-        "types": [
-            "text"
-        ]
-
-    },
-
-
-    "statistics": {
-
-        "preview": "stat",
-
         "fields": [
             "heading",
             "text"
         ],
-
         "types": [
-            "text"
+            "stat"
         ]
-
     },
 
 
     "team": {
-
         "preview": "card",
+        "fields": [
+            "heading",
+            "text",
+            "image",
+            "link"
+        ],
+        "types": [
+            "employee"
+        ]
+    },
 
+
+    "timeline": {
+        "preview": "text",
+        "fields": [
+            "heading",
+            "text"
+        ],
+        "types": [
+            "timeline"
+        ]
+    },
+
+
+    "clients": {
+        "preview": "card",
+        "fields": [
+            "heading",
+            "image"
+        ],
+        "types": [
+            "client"
+        ]
+    },
+
+
+    "directions": {
+        "preview": "card",
+        "fields": [
+            "heading",
+            "text",
+            "link"
+        ],
+        "types": [
+            "direction"
+        ]
+    },
+
+
+    "vacancies": {
+        "preview": "text",
+        "fields": [
+            "heading",
+            "text",
+            "link"
+        ],
+        "types": [
+            "vacancy"
+        ]
+    },
+
+
+    "gallery": {
+        "preview": "card",
+        "fields": [
+            "heading",
+            "image"
+        ],
+        "types": [
+            "photo"
+        ]
+    },
+
+
+    "offices": {
+        "preview": "card",
         "fields": [
             "heading",
             "text",
             "image"
         ],
-
         "types": [
-            "text"
+            "office"
         ]
-
-    },
-
-
-    "timeline": {
-
-        "preview": "text",
-
-        "fields": [
-            "heading",
-            "text"
-        ],
-
-        "types": [
-            "text"
-        ]
-
-    },
-
-
-    "directions": {
-
-        "preview": "card",
-
-        "fields": [
-            "heading",
-            "text"
-        ],
-
-        "types": [
-            "text"
-        ]
-
-    },
-
-
-    "vacancies": {
-
-        "preview": "text",
-
-        "fields": [
-            "heading"
-        ],
-
-        "types": [
-            "text"
-        ]
-
-    },
-
-
-    "offices": {
-
-        "preview": "card",
-
-        "fields": [
-            "heading",
-            "text"
-        ],
-
-        "types": [
-            "text"
-        ]
-
     },
 
 
     "benefits": {
-
         "preview": "text",
-
-        "fields": [
-            "heading"
-        ],
-
-        "types": [
-            "text"
-        ]
-
-    },
-
-
-    "contact": {
-
-        "preview": "text",
-
         "fields": [
             "heading",
             "text"
         ],
-
         "types": [
-            "text",
+            "benefit"
+        ]
+    },
+
+
+    "contact": {
+        "preview": "text",
+        "fields": [
+            "heading",
+            "text"
+        ],
+        "types": [
+            "title",
             "button"
         ]
-
     }
+
 }

@@ -7,8 +7,9 @@ def upgrade():
 
     with engine.begin() as connection:
 
+
         # -----------------------------
-        # Таблица секций
+        # Секции сайта
         # -----------------------------
 
         connection.execute(text("""
@@ -21,6 +22,7 @@ def upgrade():
             UNIQUE
         );
         """))
+
 
 
         # -----------------------------
@@ -39,8 +41,9 @@ def upgrade():
         """))
 
 
+
         # -----------------------------
-        # Элементы секций
+        # Элементы сайта
         # -----------------------------
 
         connection.execute(text("""
@@ -63,17 +66,23 @@ def upgrade():
 
             heading TEXT,
 
+            subtitle TEXT,
+
             text TEXT,
+
+            label TEXT,
 
             image TEXT,
 
             link TEXT,
 
 
+
             CONSTRAINT fk_element_section
             FOREIGN KEY(section_id)
             REFERENCES sections(section_id)
             ON DELETE CASCADE,
+
 
 
             CONSTRAINT fk_element_type
@@ -83,25 +92,68 @@ def upgrade():
         """))
 
 
+
         # -----------------------------
-        # Начальные типы элементов
+        # Типы контента
         # -----------------------------
 
         connection.execute(text("""
         INSERT INTO element_types(name)
         VALUES
-            ('text'),
-            ('button'),
-            ('image'),
-            ('link')
+            ('title'),
+            ('stat'),
+            ('employee'),
+            ('timeline'),
+            ('client'),
+            ('direction'),
+            ('vacancy'),
+            ('photo'),
+            ('office'),
+            ('benefit'),
+            ('button')
         ON CONFLICT (name) DO NOTHING;
         """))
+
+
+        # -----------------------------
+        # Секции сайта
+        # -----------------------------
+
+        connection.execute(text("""
+        INSERT INTO sections(name)
+        VALUES
+
+            ('hero'),
+
+            ('team'),
+
+            ('timeline'),
+
+            ('clients'),
+
+            ('directions'),
+
+            ('vacancies'),
+
+            ('gallery'),
+
+            ('offices'),
+
+            ('benefits'),
+
+            ('contact')
+
+        ON CONFLICT (name) DO NOTHING;
+        """))
+
+
 
 
 
 def downgrade():
 
     with engine.begin() as connection:
+
 
         connection.execute(text("""
         DROP TABLE IF EXISTS elements CASCADE;
@@ -116,6 +168,7 @@ def downgrade():
         connection.execute(text("""
         DROP TABLE IF EXISTS sections CASCADE;
         """))
+
 
 
 

@@ -7,6 +7,7 @@ def upgrade():
 
     with engine.begin() as connection:
 
+
         # -----------------------------
         # Roles
         # -----------------------------
@@ -17,13 +18,16 @@ def upgrade():
                 INSERT INTO roles (name)
                 VALUES
                     ('admin'),
-                    ('user');
+                    ('user')
+
+                ON CONFLICT (name) DO NOTHING;
                 """
             )
         )
 
+
         # -----------------------------
-        # Users
+        # Получаем роли
         # -----------------------------
 
         admin_role = connection.execute(
@@ -36,6 +40,8 @@ def upgrade():
             )
         ).scalar()
 
+
+
         user_role = connection.execute(
             text(
                 """
@@ -46,32 +52,11 @@ def upgrade():
             )
         ).scalar()
 
-        connection.execute(
-            text(
-                """
-                INSERT INTO users
-                (
-                    role_id,
-                    name,
-                    login,
-                    password
-                )
-                VALUES
-                (
-                    :role_id,
-                    :name,
-                    :login,
-                    :password
-                )
-                """
-            ),
-            {
-                "role_id": admin_role,
-                "name": "Administrator",
-                "login": "admin",
-                "password": "admin"
-            }
-        )
+
+
+        # -----------------------------
+        # Admin user
+        # -----------------------------
 
         connection.execute(
             text(
@@ -83,6 +68,7 @@ def upgrade():
                     login,
                     password
                 )
+
                 VALUES
                 (
                     :role_id,
@@ -90,6 +76,44 @@ def upgrade():
                     :login,
                     :password
                 )
+
+                ON CONFLICT (login) DO NOTHING;
+                """
+            ),
+            {
+                "role_id": admin_role,
+                "name": "Administrator",
+                "login": "admin",
+                "password": "admin"
+            }
+        )
+
+
+
+        # -----------------------------
+        # Default user
+        # -----------------------------
+
+        connection.execute(
+            text(
+                """
+                INSERT INTO users
+                (
+                    role_id,
+                    name,
+                    login,
+                    password
+                )
+
+                VALUES
+                (
+                    :role_id,
+                    :name,
+                    :login,
+                    :password
+                )
+
+                ON CONFLICT (login) DO NOTHING;
                 """
             ),
             {
@@ -101,11 +125,29 @@ def upgrade():
         )
 
 
+
 def downgrade():
 
     with engine.begin() as connection:
 
-        connection.execute(text("DELETE FROM users;"))
-        connection.execute(text("DELETE FROM roles;"))
+        connection.execute(
+            text(
+                """
+                DELETE FROM users;
+                """
+            )
+        )
+
+
+        connection.execute(
+            text(
+                """
+                DELETE FROM roles;
+                """
+            )
+        )
+
+
+
 if __name__ == "__main__":
     upgrade()
