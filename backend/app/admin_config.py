@@ -29,6 +29,7 @@ ADMIN_CONFIG = {
     "timeline": {
         "preview": "text",
         "fields": [
+            "label",
             "heading",
             "text"
         ],

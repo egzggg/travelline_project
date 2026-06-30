@@ -3,6 +3,7 @@ from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 from sqlalchemy import text
 
@@ -23,6 +24,12 @@ ADMIN_SECTIONS = [
     for name in ADMIN_CONFIG.keys()
 ]
 
+
+app.mount(
+    "/static",
+    StaticFiles(directory=str(BASE_DIR / "frontend/static")),
+    name="static",
+)
 
 
 templates = Jinja2Templates(
