@@ -8,7 +8,7 @@ def upgrade():
     with engine.begin() as connection:
 
         connection.execute(text("""
-        CREATE TABLE roles
+        CREATE TABLE IF NOT EXISTS roles
         (
             role_id SERIAL PRIMARY KEY,
 
@@ -20,7 +20,7 @@ def upgrade():
 
 
         connection.execute(text("""
-        CREATE TABLE users
+        CREATE TABLE IF NOT EXISTS users
         (
             user_id SERIAL PRIMARY KEY,
 
@@ -41,20 +41,25 @@ def upgrade():
             CONSTRAINT fk_users_role
             FOREIGN KEY(role_id)
             REFERENCES roles(role_id)
+            ON DELETE CASCADE
         );
         """))
+
 
 
 def downgrade():
 
     with engine.begin() as connection:
+
         connection.execute(text("""
         DROP TABLE IF EXISTS users CASCADE;
         """))
 
+
         connection.execute(text("""
         DROP TABLE IF EXISTS roles CASCADE;
         """))
+
 
 
 if __name__ == "__main__":

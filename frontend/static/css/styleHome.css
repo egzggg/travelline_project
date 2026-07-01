@@ -1,0 +1,234 @@
+
+section {
+    padding:80px 0;
+}
+
+
+/* HEADER */
+
+.header {
+
+    background:#317fe4;
+
+    color:rgb(255, 255, 255);
+
+    padding:100px 0;
+    padding-left: 170px;
+
+}
+
+
+/* HERO */
+
+.hero {
+
+    background:white;
+    
+
+    padding:80px 0;
+
+}
+
+
+.section-title {
+
+    margin-bottom:40px;
+
+    text-align:center;
+
+}
+
+
+.stat-number {
+
+    font-size:2rem;
+
+    font-weight:bold;
+
+}
+
+
+.timeline {
+    position: relative;
+    margin: 50px 0;
+}
+
+
+.timeline::before {
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    bottom:0;
+
+    width:3px;
+
+    background:#317fe4;
+
+    transform:translateX(-50%);
+
+}
+
+
+
+.timeline-item {
+
+    display:flex;
+
+    align-items:center;
+
+    margin-bottom:50px;
+
+    position:relative;
+
+}
+
+
+
+.timeline-item.right {
+    flex-direction:row-reverse;
+}
+
+
+.timeline-content {
+    width:50%;
+    background:#f8f9fa;
+    padding:25px;
+    border-radius:10px;
+    margin:0 20px;
+}
+
+
+
+
+
+
+.timeline-year {
+
+    width:50%;
+
+    padding-right:40px;
+
+    text-align:right;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#317fe4;
+
+}
+
+.timeline-item.left .timeline-year {
+    text-align:right;
+    padding-right:40px;
+}
+
+
+.timeline-item.right .timeline-year {
+    text-align:left;
+    padding-left:40px;
+}
+
+
+.timeline-content {
+
+    width:50%;
+
+    background:#f8f9fa;
+
+    padding:25px;
+
+    border-radius:10px;
+
+}
+
+
+
+.timeline-item::after {
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    width:15px;
+
+    height:15px;
+
+    background:#317fe4;
+
+    border-radius:50%;
+
+    transform:translateX(-50%);
+
+}
+
+
+.card img {
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+
+footer {
+
+    background:#212529;
+
+    color:white;
+
+    padding:40px 0;
+
+}
+.header{
+    background:#317fe4;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+}
+
+
+.navbar{
+    background:#317fe4;
+    padding:25px 0;
+}
+
+
+.navbar-brand{
+    letter-spacing:3px;
+    font-size:32px;
+}
+
+
+.nav-link{
+    font-weight:500;
+    margin-left:25px;
+    transition:.2s;
+}
+
+
+.nav-link:hover{
+    color:#dbeafe !important;
+}
+
+
+.hero-content{
+    padding-top:80px;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}

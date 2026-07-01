@@ -16,16 +16,25 @@ services:
       - "5435:5432"
 
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - travelline_pg_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U travelline_user -d travelline"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
 
 
   migrate:
+
     build: .
 
     container_name: travelline_migrate
 
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
     command: python -m backend.migrate
 
@@ -33,5 +42,31 @@ services:
       DATABASE_URL: postgresql://travelline_user:travelline_pass@postgres:5432/travelline
 
 
+
+  backend:
+
+    build: .
+
+    container_name: travelline_backend
+
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+    command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+
+    environment:
+      DATABASE_URL: postgresql://travelline_user:travelline_pass@postgres:5432/travelline
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - .:/app
+
+    restart: unless-stopped
+
+
+
 volumes:
-  postgres_data:
+  travelline_pg_data:
