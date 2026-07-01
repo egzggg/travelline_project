@@ -245,7 +245,7 @@ footer {
     object-fit: cover;
 }
 
-..clients-section .card {
+.clients-section .card {
     text-align: center;
 }
 
@@ -275,7 +275,9 @@ footer {
 }
 
 .team-section .marquee-container::before,
-.team-section .marquee-container::after {
+.team-section .marquee-container::after,
+.clients-section .marquee-container::before,
+.clients-section .marquee-container::after {
     content: "";
     position: absolute;
     top: 0;
@@ -285,12 +287,14 @@ footer {
     z-index: 1;
 }
 
-.team-section .marquee-container::before {
+.team-section .marquee-container::before,
+.clients-section .marquee-container::before {
     left: 0;
     background: linear-gradient(90deg, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
 }
 
-.team-section .marquee-container::after {
+.team-section .marquee-container::after,
+.clients-section .marquee-container::after {
     right: 0;
     background: linear-gradient(270deg, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
 }
@@ -304,6 +308,10 @@ footer {
     min-width: max-content;
     animation: marquee 30s linear infinite;
     will-change: transform;
+}
+
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
 }
 
 .marquee-item {
@@ -321,10 +329,7 @@ footer {
     }
 }
 
-.team-section .marquee-track {
-    animation-duration: 32s;
-}
-
+.team-section .marquee-track,
 .clients-section .marquee-track {
     animation-duration: 28s;
 }
@@ -337,6 +342,22 @@ footer {
 .team-section .marquee-item .card,
 .clients-section .marquee-item .card {
     min-height: 100%;
+    width: 100%;
+}
+
+.team-section .marquee-item .card {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-section .marquee-item .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-section .marquee-item .card-body .btn {
+    margin-top: auto;
 }
 
 @media (max-width: 992px) {
