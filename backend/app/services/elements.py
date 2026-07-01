@@ -59,6 +59,17 @@ async def create_element_service(
         if position > max_position + 1:
             return None, "Invalid position"
 
+        # Валидация для раздела contact: максимум по одному элементу типов title и button
+        if section_name == "contact":
+            if element_type in ("title", "button"):
+                existing = repo.count_elements_by_type_in_section(section_name, element_type, connection)
+                if existing >= 1:
+                    return None, f"Only one element of type '{element_type}' is allowed in contact"
+
+        # Если создаётся button — игнорируем heading
+        if element_type == "button":
+            heading = None
+
         # Сдвигаем позиции
         repo.shift_positions_up(section_id, position, connection)
 
@@ -134,7 +145,15 @@ async def update_element_service(
             text("SELECT type_id FROM element_types WHERE name = :name"),
             {"name": element_type}
         ).first()
-        
+        # Валидация для раздела contact при обновлении: максимум по одному title/button
+        if section_name == "contact":
+            if element_type == "button":
+                heading = None
+
+            existing = repo.count_elements_by_type_in_section(section_name, element_type, connection, exclude_id=element_id)
+            if existing >= 1:
+                return None, f"Only one element of type '{element_type}' is allowed in contact"
+
         repo.update_element(
             element_id, type_row.type_id, position,
             heading, subtitle, text_value, label, image_base64, link,

@@ -38,7 +38,7 @@
                   </select>
                 </div>
                 {% if "heading" in fields %}
-                  <div class="mb-3">
+                  <div class="mb-3" id="heading-field">
                     <label class="form-label">Заголовок</label>
                     <input type="text" name="heading" id="heading" class="form-control" value="{{ element.heading if element else '' }}" oninput="updatePreview()">
                   </div>
