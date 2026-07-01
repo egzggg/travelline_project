@@ -35,3 +35,57 @@ function previewImage(event) {
     image.style.display = "block";
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const typeSelect = document.querySelector('select[name="element_type"]');
+  const headingInput = document.getElementById("heading");
+  const form = document.querySelector('form');
+
+  function toggleFieldsForType() {
+    if (!typeSelect || !form) return;
+
+    const keepNames = ['element_type', 'position', 'text'];
+    const fieldBlocks = form.querySelectorAll('.mb-3');
+    const headingInput = document.getElementById('heading');
+
+    fieldBlocks.forEach((block) => {
+      const control = block.querySelector('input[name], textarea[name], select[name]');
+      if (!control) return;
+      const name = control.getAttribute('name');
+
+      if (typeSelect.value === 'button') {
+        if (!keepNames.includes(name)) {
+          block.style.display = 'none';
+        } else {
+          block.style.display = '';
+        }
+      } else {
+        block.style.display = '';
+      }
+    });
+
+    if (typeSelect.value === 'button') {
+      if (headingInput) {
+        headingInput.value = '';
+        headingInput.disabled = true;
+      }
+    } else {
+      if (headingInput) headingInput.disabled = false;
+    }
+  }
+
+  if (typeSelect) {
+    typeSelect.addEventListener('change', toggleFieldsForType);
+    // run on load
+    toggleFieldsForType();
+  }
+
+  if (form) {
+    form.addEventListener('submit', function () {
+      if (typeSelect && typeSelect.value === 'button') {
+        // Очистить поле heading на всякий случай
+        if (headingInput) headingInput.value = '';
+      }
+    });
+  }
+});

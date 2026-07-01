@@ -134,6 +134,23 @@ def get_element_type_id(element_type: str, connection):
     return row.type_id if row else None
 
 
+def count_elements_by_type_in_section(section_name: str, element_type: str, connection, exclude_id: int | None = None):
+    """Посчитать количество элементов данного типа в разделе (опционально исключая конкретный элемент)."""
+    query = """
+        SELECT COUNT(*)
+        FROM elements e
+        JOIN element_types et ON e.type_id = et.type_id
+        JOIN sections s ON e.section_id = s.section_id
+        WHERE s.name = :section_name AND et.name = :element_type
+    """
+    params = {"section_name": section_name, "element_type": element_type}
+    if exclude_id is not None:
+        query += " AND e.element_id != :exclude_id"
+        params["exclude_id"] = exclude_id
+
+    return connection.execute(text(query), params).scalar()
+
+
 def shift_positions_up(section_id: int, position: int, connection):
     """Сдвинуть позиции элементов вверх"""
     connection.execute(
@@ -159,7 +176,7 @@ def shift_positions_down(section_id: int, position: int, connection):
 
 
 def create_element(section_id: int, type_id: int, position: int, 
-                   heading, subtitle, text, label, image, link, connection):
+                   heading, subtitle, text_value, label, image, link, connection):
     """Создать новый элемент"""
     connection.execute(
         text("""
@@ -173,7 +190,7 @@ def create_element(section_id: int, type_id: int, position: int,
             "position": position,
             "heading": heading,
             "subtitle": subtitle,
-            "text": text,
+            "text": text_value,
             "label": label,
             "image": image,
             "link": link
@@ -190,7 +207,7 @@ def delete_element(element_id: int, connection):
 
 
 def update_element(element_id: int, type_id: int, position: int,
-                   heading, subtitle, text, label, image, link, connection):
+                   heading, subtitle, text_value, label, image, link, connection):
     """Обновить элемент"""
     connection.execute(
         text("""
@@ -205,7 +222,7 @@ def update_element(element_id: int, type_id: int, position: int,
             "position": position,
             "heading": heading,
             "subtitle": subtitle,
-            "text": text,
+            "text": text_value,
             "label": label,
             "image": image,
             "link": link,

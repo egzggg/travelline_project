@@ -191,6 +191,248 @@ footer {
     padding:40px 0;
 
 }
+
+/* SECTION CARDS */
+
+.team-section .card,
+.clients-section .card,
+.gallery-section .card,
+.offices-section .card {
+    border: none;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(33, 45, 66, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-section .card:hover,
+.clients-section .card:hover,
+.gallery-section .card:hover,
+.offices-section .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 32px 80px rgba(33, 45, 66, 0.14);
+}
+
+.team-section .card-body,
+.clients-section .card-body,
+.gallery-section .card-body,
+.offices-section .card-body {
+    padding: 1.6rem;
+}
+
+.team-section .card h5,
+.clients-section .card h5,
+.gallery-section .card h5,
+.offices-section .card h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #1f2e4d;
+}
+
+.team-section .card p,
+.offices-section .card p {
+    color: #556177;
+    line-height: 1.75;
+}
+
+.team-section .card-img-top,
+.clients-section .card-img-top,
+.gallery-section .card-img-top,
+.offices-section .card-img-top {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.clients-section .card {
+    text-align: center;
+}
+
+.clients-section .card-body {
+    padding-top: 1rem;
+}
+
+.clients-section .card h5 {
+    margin-top: 1rem;
+    font-size: 1.12rem;
+}
+
+.marquee-container {
+    overflow: hidden;
+    position: relative;
+    margin: 1rem 0 2rem;
+}
+
+.team-section .marquee-container,
+.clients-section .marquee-container {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.team-section .marquee-container::before,
+.team-section .marquee-container::after,
+.clients-section .marquee-container::before,
+.clients-section .marquee-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.team-section .marquee-container::before,
+.clients-section .marquee-container::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
+}
+
+.team-section .marquee-container::after,
+.clients-section .marquee-container::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
+}
+
+.marquee-track {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.marquee-group {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    flex: 0 0 auto;
+    align-items: stretch;
+    padding-right: 1.5rem;
+}
+
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    flex: 0 0 auto;
+    min-width: 320px;
+    max-width: 320px;
+}
+
+@keyframes marquee {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+.team-section .marquee-track,
+.clients-section .marquee-track {
+    animation-duration: 28s;
+}
+
+.team-section .marquee-item,
+.clients-section .marquee-item {
+    display: flex;
+}
+
+.team-section .marquee-item .card,
+.clients-section .marquee-item .card {
+    min-height: 100%;
+    width: 100%;
+}
+
+.team-section .marquee-item .card {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-section .marquee-item .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-section .marquee-item .card-body .btn {
+    margin-top: auto;
+}
+
+@media (max-width: 992px) {
+    .marquee-item {
+        min-width: 280px;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .marquee-item {
+        min-width: 240px;
+        max-width: 240px;
+    }
+    .marquee-group {
+        gap: 1rem;
+        padding-right: 1rem;
+    }
+    .team-section .card-body,
+    .clients-section .card-body {
+        padding: 1.25rem;
+    }
+}
+
+.gallery-section .card {
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-section .card-body {
+    flex: 1;
+}
+
+.gallery-section .card h5 {
+    margin-top: 1rem;
+}
+
+.offices-section .card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.offices-section .card-img-top {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+    .offices-section .card {
+        flex-direction: row;
+    }
+
+    .offices-section .card-img-top {
+        width: 45%;
+        height: auto;
+        min-height: 100%;
+        border-bottom: none;
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .offices-section .card-body {
+        width: 55%;
+    }
+}
+
 .header{
     background:#317fe4;
     color:white;

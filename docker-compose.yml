@@ -36,6 +36,7 @@ services:
       postgres:
         condition: service_healthy
 
+    working_dir: /app
     command: python -m backend.migrate
 
     environment:
@@ -53,7 +54,8 @@ services:
       migrate:
         condition: service_completed_successfully
 
-    command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+    working_dir: /app
+    command: python -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
 
     environment:
       DATABASE_URL: postgresql://travelline_user:travelline_pass@postgres:5432/travelline
