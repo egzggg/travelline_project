@@ -1,0 +1,360 @@
+openapi: "3.0.3"
+
+info:
+  title: TravelLine API
+  version: "1.0.0"
+  description: TravelLine API documentation for public and admin routes.
+
+servers:
+  - url: http://127.0.0.1:8000/
+
+paths:
+  /:
+    get:
+      summary: Главная страница
+      description: Возвращает HTML главной страницы сайта.
+      tags:
+        - Public
+      operationId: getHomePage
+      responses:
+        "200":
+          description: HTML главной страницы
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /api/content:
+    get:
+      summary: Получить весь контент сайта
+      description: Возвращает все разделы с элементами для главной страницы.
+      tags:
+        - Content
+      operationId: getContent
+      responses:
+        "200":
+          description: Контент получен успешно
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sections"
+
+  /admin:
+    get:
+      summary: Страница админки
+      description: Возвращает HTML со списком разделов в админке.
+      tags:
+        - Admin
+      operationId: getAdminIndex
+      responses:
+        "200":
+          description: HTML админки
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /admin/{section_name}:
+    get:
+      summary: Страница раздела админки
+      description: Возвращает HTML со списком элементов выбранного раздела.
+      tags:
+        - Admin
+      operationId: getAdminSection
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Системное имя раздела
+          schema:
+            type: string
+      responses:
+        "200":
+          description: HTML списка элементов раздела
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Раздел не найден
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /admin/{section_name}/create:
+    get:
+      summary: Форма создания элемента
+      description: Возвращает HTML-форму для создания нового элемента в разделе.
+      tags:
+        - Admin
+      operationId: getAdminCreateForm
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Системное имя раздела
+          schema:
+            type: string
+      responses:
+        "200":
+          description: HTML формы создания элемента
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Раздел не найден
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Создать элемент
+      description: Создаёт новый элемент в разделе и перенаправляет на страницу раздела.
+      tags:
+        - Admin
+      operationId: postAdminCreateElement
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Системное имя раздела
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - element_type
+                - position
+              properties:
+                element_type:
+                  type: string
+                position:
+                  type: integer
+                heading:
+                  type: string
+                  nullable: true
+                subtitle:
+                  type: string
+                  nullable: true
+                text:
+                  type: string
+                  nullable: true
+                label:
+                  type: string
+                  nullable: true
+                link:
+                  type: string
+                  nullable: true
+                image:
+                  type: string
+                  format: binary
+                  nullable: true
+      responses:
+        "303":
+          description: Элемент создан, перенаправление на страницу раздела
+        "400":
+          description: Ошибка запроса или некорректные данные
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Раздел не найден
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /admin/{section_name}/{element_id}/edit:
+    get:
+      summary: Форма редактирования элемента
+      description: Возвращает HTML-форму редактирования элемента.
+      tags:
+        - Admin
+      operationId: getAdminEditForm
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Системное имя раздела
+          schema:
+            type: string
+        - name: element_id
+          in: path
+          required: true
+          description: Идентификатор элемента
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTML формы редактирования элемента
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Элемент или раздел не найден
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Обновить элемент
+      description: Сохраняет изменения элемента и перенаправляет на страницу раздела.
+      tags:
+        - Admin
+      operationId: postAdminEditElement
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Системное имя раздела
+          schema:
+            type: string
+        - name: element_id
+          in: path
+          required: true
+          description: Идентификатор элемента
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - element_type
+                - position
+              properties:
+                element_type:
+                  type: string
+                position:
+                  type: integer
+                heading:
+                  type: string
+                  nullable: true
+                subtitle:
+                  type: string
+                  nullable: true
+                text:
+                  type: string
+                  nullable: true
+                label:
+                  type: string
+                  nullable: true
+                link:
+                  type: string
+                  nullable: true
+                image:
+                  type: string
+                  format: binary
+                  nullable: true
+      responses:
+        "303":
+          description: Элемент обновлён, перенаправление на страницу раздела
+        "400":
+          description: Ошибка запроса или некорректные данные
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Элемент или раздел не найден
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /admin/{section_name}/{element_id}/delete:
+    post:
+      summary: Удалить элемент
+      description: Удаляет элемент и перенаправляет на страницу раздела.
+      tags:
+        - Admin
+      operationId: postAdminDeleteElement
+      parameters:
+        - name: section_name
+          in: path
+          required: true
+          description: Системное имя раздела
+          schema:
+            type: string
+        - name: element_id
+          in: path
+          required: true
+          description: Идентификатор элемента
+          schema:
+            type: integer
+      responses:
+        "303":
+          description: Элемент удалён, перенаправление на страницу раздела
+        "400":
+          description: Ошибка удаления
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Элемент или раздел не найден
+          content:
+            text/html:
+              schema:
+                type: string
+
+components:
+  schemas:
+    Sections:
+      type: object
+      description: Объект, где ключи — имена разделов, а значения — массивы элементов.
+      additionalProperties:
+        type: array
+        items:
+          $ref: "#/components/schemas/Element"
+
+    Element:
+      type: object
+      required:
+        - id
+        - position
+        - type
+      properties:
+        id:
+          type: integer
+          example: 15
+        position:
+          type: integer
+          example: 1
+        type:
+          type: string
+          example: text
+        heading:
+          type: string
+          nullable: true
+          example: Приветствие
+        subtitle:
+          type: string
+          nullable: true
+          example: Описание секции
+        text:
+          type: string
+          nullable: true
+          example: Текст элемента
+        label:
+          type: string
+          nullable: true
+          example: Подробнее
+        image:
+          type: string
+          nullable: true
+          example: /static/images/hero.jpg
+        link:
+          type: string
+          nullable: true
+          example: https://example.com

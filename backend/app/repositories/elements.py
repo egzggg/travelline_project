@@ -159,7 +159,7 @@ def shift_positions_down(section_id: int, position: int, connection):
 
 
 def create_element(section_id: int, type_id: int, position: int, 
-                   heading, subtitle, text, label, image, link, connection):
+                   heading, subtitle, text_value, label, image, link, connection):
     """Создать новый элемент"""
     connection.execute(
         text("""
@@ -173,7 +173,7 @@ def create_element(section_id: int, type_id: int, position: int,
             "position": position,
             "heading": heading,
             "subtitle": subtitle,
-            "text": text,
+            "text": text_value,
             "label": label,
             "image": image,
             "link": link
@@ -190,7 +190,7 @@ def delete_element(element_id: int, connection):
 
 
 def update_element(element_id: int, type_id: int, position: int,
-                   heading, subtitle, text, label, image, link, connection):
+                   heading, subtitle, text_value, label, image, link, connection):
     """Обновить элемент"""
     connection.execute(
         text("""
@@ -205,7 +205,7 @@ def update_element(element_id: int, type_id: int, position: int,
             "position": position,
             "heading": heading,
             "subtitle": subtitle,
-            "text": text,
+            "text": text_value,
             "label": label,
             "image": image,
             "link": link,
