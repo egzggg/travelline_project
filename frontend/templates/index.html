@@ -54,38 +54,42 @@
         <h2 class="section-title">Команда</h2>
         <div class="marquee-container">
           <div class="marquee-track team-track">
-            {% for item in data.team %}
-              <div class="marquee-item">
-                <div class="card h-100">
-                  {% if item.image %}
-                    <img src="{{ item.image }}" class="card-img-top">
-                  {% endif %}
-                  <div class="card-body">
-                    <h5>{{ item.heading }}</h5>
-                    <p>{{ item.text }}</p>
-                    {% if item.link %}
-                      <a href="{{ item.link }}" class="btn btn-outline-primary">Связаться</a>
+            <div class="marquee-group">
+              {% for item in data.team %}
+                <div class="marquee-item">
+                  <div class="card h-100">
+                    {% if item.image %}
+                      <img src="{{ item.image }}" class="card-img-top">
                     {% endif %}
+                    <div class="card-body">
+                      <h5>{{ item.heading }}</h5>
+                      <p>{{ item.text }}</p>
+                      {% if item.link %}
+                        <a href="{{ item.link }}" class="btn btn-outline-primary">Связаться</a>
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
-            {% for item in data.team %}
-              <div class="marquee-item">
-                <div class="card h-100">
-                  {% if item.image %}
-                    <img src="{{ item.image }}" class="card-img-top">
-                  {% endif %}
-                  <div class="card-body">
-                    <h5>{{ item.heading }}</h5>
-                    <p>{{ item.text }}</p>
-                    {% if item.link %}
-                      <a href="{{ item.link }}" class="btn btn-outline-primary">Связаться</a>
+              {% endfor %}
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              {% for item in data.team %}
+                <div class="marquee-item">
+                  <div class="card h-100">
+                    {% if item.image %}
+                      <img src="{{ item.image }}" class="card-img-top">
                     {% endif %}
+                    <div class="card-body">
+                      <h5>{{ item.heading }}</h5>
+                      <p>{{ item.text }}</p>
+                      {% if item.link %}
+                        <a href="{{ item.link }}" class="btn btn-outline-primary">Связаться</a>
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
@@ -113,30 +117,34 @@
         <h2 class="section-title">Клиенты</h2>
         <div class="marquee-container">
           <div class="marquee-track clients-track">
-            {% for item in data.clients %}
-              <div class="marquee-item">
-                <div class="card h-100 text-center">
-                  {% if item.image %}
-                    <img src="{{ item.image }}" class="card-img-top">
-                  {% endif %}
-                  <div class="card-body">
-                    <h5>{{ item.heading }}</h5>
+            <div class="marquee-group">
+              {% for item in data.clients %}
+                <div class="marquee-item">
+                  <div class="card h-100 text-center">
+                    {% if item.image %}
+                      <img src="{{ item.image }}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                      <h5>{{ item.heading }}</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
-            {% for item in data.clients %}
-              <div class="marquee-item">
-                <div class="card h-100 text-center">
-                  {% if item.image %}
-                    <img src="{{ item.image }}" class="card-img-top">
-                  {% endif %}
-                  <div class="card-body">
-                    <h5>{{ item.heading }}</h5>
+              {% endfor %}
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              {% for item in data.clients %}
+                <div class="marquee-item">
+                  <div class="card h-100 text-center">
+                    {% if item.image %}
+                      <img src="{{ item.image }}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                      <h5>{{ item.heading }}</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>

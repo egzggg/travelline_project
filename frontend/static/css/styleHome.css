@@ -302,12 +302,21 @@ footer {
 .marquee-track {
     display: flex;
     flex-wrap: nowrap;
-    gap: 1.5rem;
     align-items: stretch;
     justify-content: flex-start;
-    min-width: max-content;
+    width: max-content;
     animation: marquee 30s linear infinite;
     will-change: transform;
+    backface-visibility: hidden;
+}
+
+.marquee-group {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    flex: 0 0 auto;
+    align-items: stretch;
+    padding-right: 1.5rem;
 }
 
 .marquee-container:hover .marquee-track {
@@ -321,11 +330,11 @@ footer {
 }
 
 @keyframes marquee {
-    0% {
-        transform: translateX(0);
+    from {
+        transform: translate3d(0, 0, 0);
     }
-    100% {
-        transform: translateX(-50%);
+    to {
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
@@ -372,8 +381,9 @@ footer {
         min-width: 240px;
         max-width: 240px;
     }
-    .marquee-track {
+    .marquee-group {
         gap: 1rem;
+        padding-right: 1rem;
     }
     .team-section .card-body,
     .clients-section .card-body {
