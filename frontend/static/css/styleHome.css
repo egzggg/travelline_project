@@ -245,7 +245,7 @@ footer {
     object-fit: cover;
 }
 
-.clients-section .card {
+..clients-section .card {
     text-align: center;
 }
 
@@ -256,6 +256,108 @@ footer {
 .clients-section .card h5 {
     margin-top: 1rem;
     font-size: 1.12rem;
+}
+
+.marquee-container {
+    overflow: hidden;
+    position: relative;
+    margin: 1rem 0 2rem;
+}
+
+.team-section .marquee-container,
+.clients-section .marquee-container {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.team-section .marquee-container::before,
+.team-section .marquee-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.team-section .marquee-container::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
+}
+
+.team-section .marquee-container::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
+}
+
+.marquee-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-width: max-content;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+}
+
+.marquee-item {
+    flex: 0 0 auto;
+    min-width: 320px;
+    max-width: 320px;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.team-section .marquee-track {
+    animation-duration: 32s;
+}
+
+.clients-section .marquee-track {
+    animation-duration: 28s;
+}
+
+.team-section .marquee-item,
+.clients-section .marquee-item {
+    display: flex;
+}
+
+.team-section .marquee-item .card,
+.clients-section .marquee-item .card {
+    min-height: 100%;
+}
+
+@media (max-width: 992px) {
+    .marquee-item {
+        min-width: 280px;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .marquee-item {
+        min-width: 240px;
+        max-width: 240px;
+    }
+    .marquee-track {
+        gap: 1rem;
+    }
+    .team-section .card-body,
+    .clients-section .card-body {
+        padding: 1.25rem;
+    }
 }
 
 .gallery-section .card {
