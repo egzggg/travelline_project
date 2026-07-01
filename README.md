@@ -95,8 +95,8 @@ travelline_project/
 │           └── admin-form.js       # Реал-тайм preview в форме
 │
 ├── json/                           # JSON примеры
-│   ├── struct_json.json
-│   └── struct_json2.json
+│   └── struct_json.json
+│  
 │
 ├── Dockerfile                      # Конфигурация Docker
 ├── docker-compose.yml              # Оркестрация контейнеров
