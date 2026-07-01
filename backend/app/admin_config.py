@@ -11,7 +11,6 @@ ADMIN_CONFIG = {
         ]
     },
 
-
     "team": {
         "preview": "card",
         "fields": [

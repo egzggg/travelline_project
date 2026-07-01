@@ -66,14 +66,6 @@ travelline_project/
 │   │   │   ├── __init__.py
 │   │   │   └── elements.py         # SQL запросы для элементов
 │   │   │
-│   │   ├── models/                 # SQLAlchemy ORM модели
-│   │   │   ├── __init__.py
-│   │   │   └── elements.py         # (при необходимости)
-│   │   │
-│   │   ├── schemas/                # Pydantic схемы
-│   │   │   ├── __init__.py
-│   │   │   └── elements.py         # (при необходимости)
-│   │   │
 │   │   └── utils/                  # Вспомогательные функции
 │   │       ├── __init__.py
 │   │       └── files.py            # Работа с файлами, base64 encoding
